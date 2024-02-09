@@ -3,7 +3,7 @@ class BST
         @data = data
         @left = nil
         @right = nil
-        
+       
     end
 
     def data
@@ -86,6 +86,12 @@ class BST
              
             end
         end
+    end
+
+    def all_data(self.data)
+       # traverse the binary tree and push each value into an array, then sort it
+       # this method should return an array of the data for each node in the tree
+       # it should be called at the end of the initializer method  
     end
 
 end
