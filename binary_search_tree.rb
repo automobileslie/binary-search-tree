@@ -32,34 +32,58 @@ class BST
 
         while stopLoop == 0
             if currentNode.data >= num
-                if currentNode.left == nil
+                if  currentNode.left == nil || currentNode.left.data == nil
                     newNode = BST.new(num)
                     currentNode.left = newNode
                     stopLoop = 1
-                else
-                    # if currentNode.left > num
-                    #     leftNode = currentNode.left
-                    #     newNode = BST.new(num)
-                    #     currentNode.left = newNode
-                    #     newNode.left = leftNode
-                    #     stopLoop = 1
-
-                    # else 
+                elsif currentNode.left.data >= num
                     leftNode = currentNode.left
-                    currentNode = leftNode
-                    insert(num)
-                    # end
+                    if leftNode.left
+                        currentNode = currentNode.left
+                        insert(num)
+                    else
+                        newNode = BST.new(num)
+                        leftNode.left = newNode
+                        stopLoop = 1
+                    end
+                else
+                    leftNode = currentNode.left
+                    if leftNode.right
+                        currentNode = currentNode.right
+                        insert(num)
+                    else
+                        newNode = BST.new(num)
+                        leftNode.right = newNode
+                        stopLoop = 1
+                    end
                 end
             elsif currentNode.data < num
-                if currentNode.right == nil
+                rightNode = currentNode.right
+                if rightNode == nil || rightNode.data == nil
                     newNode = BST.new(num)
                     currentNode.right = newNode
                     stopLoop = 1
+                elsif rightNode.data <= num
+                    if rightNode.right
+                        currentNode = currentNode.right
+                        insert(num)
+                    else
+                        newNode = BST.new(num)
+                        rightNode.right = newNode
+                        stopLoop = 1
+                    end
                 else
                     rightNode = currentNode.right
-                    currentNode = rightNode
-                    insert(num)
+                    if rightNode.left
+                        currentNode = currentNode.left
+                        insert(num)
+                    else
+                        newNode = BST.new(num)
+                        rightNode.left = newNode
+                        stopLoop = 1
+                    end
                 end
+             
             end
         end
     end
